@@ -10,7 +10,7 @@ return require('packer').startup(function(use)
   use {
 	  'nvim-telescope/telescope.nvim', tag = '0.1.0',
 	  -- or                            , branch = '0.1.x',
-	  requires = { {'nvim-lua/plenary.nvim'} }
+	  requires = { {'nvim-lua/plenary.nvim', 'IllustratedMan-code/telescope-conda.nvim'} }
   }
 
   use({
@@ -72,12 +72,7 @@ return require('packer').startup(function(use)
   use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
   use("folke/neodev.nvim")
   use 'mfussenegger/nvim-jdtls'
-  use {
-    'akinsho/flutter-tools.nvim',
-    requires = {
-        'nvim-lua/plenary.nvim',
-        'stevearc/dressing.nvim', -- optional for vim.ui.select
-    },
-  }
+  use "terrortylor/nvim-comment"
+  use "luk400/vim-jukit"
 end)
 

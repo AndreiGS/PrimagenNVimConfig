@@ -1,4 +1,5 @@
 local lsp = require("lsp-zero")
+local lsp_config = require("lspconfig")
 
 lsp.preset("recommended")
 
@@ -45,7 +46,7 @@ lsp.set_preferences({
     }
 })
 
-lsp.on_attach(function(client, bufnr)
+local on_attach = function(client, bufnr)
   local opts = {buffer = bufnr, remap = false}
 
   vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
@@ -58,11 +59,30 @@ lsp.on_attach(function(client, bufnr)
   vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end, opts)
   vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
   vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
-end)
+end
 
-lsp.setup()
+lsp.on_attach(on_attach)
 
 vim.diagnostic.config({
     virtual_text = true
 })
 
+lsp_config["dartls"].setup({
+  on_attach = on_attach,
+  root_dir = lsp_config.util.root_pattern('.git', 'pubspec.yaml'),
+  settings = {
+    dart = {
+      analysisExcludedFolders = {
+        vim.fn.expand("$HOME/AppData/Local/Pub/Cache"),
+        vim.fn.expand("$HOME/.pub-cache"),
+        vim.fn.expand("/opt/homebrew/"),
+        vim.fn.expand("$HOME/tools/flutter/"),
+      },
+      updateImportsOnRename = true,
+      completeFunctionCalls = true,
+      showTodos = true,
+    }
+  },
+})
+
+lsp.setup()
