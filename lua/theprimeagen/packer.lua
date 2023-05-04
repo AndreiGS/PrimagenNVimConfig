@@ -13,12 +13,20 @@ return require('packer').startup(function(use)
 	  requires = { {'nvim-lua/plenary.nvim', 'IllustratedMan-code/telescope-conda.nvim'} }
   }
 
+  -- use({
+  -- 	  'rose-pine/neovim',
+  -- 	  as = 'rose-pine',
+  -- 	  config = function()
+  -- 		  vim.cmd('colorscheme rose-pine')
+  -- 	  end
+  -- })
+
   use({
-	  'rose-pine/neovim',
-	  as = 'rose-pine',
-	  config = function()
-		  vim.cmd('colorscheme rose-pine')
-	  end
+    'catppuccin/vim',
+    as = 'catppuccin',
+    config = function()
+      vim.cmd('colorscheme catppuccin_mocha')
+    end
   })
 
   use({
@@ -74,5 +82,6 @@ return require('packer').startup(function(use)
   use 'mfussenegger/nvim-jdtls'
   use "terrortylor/nvim-comment"
   use "luk400/vim-jukit"
+  use "christoomey/vim-tmux-navigator"
 end)
 
