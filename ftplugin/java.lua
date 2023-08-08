@@ -1,4 +1,7 @@
 -- local capabilities = require("lsp-zero").common_capabilities()
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
+vim.opt.shiftwidth = 4
 
 local status, jdtls = pcall(require, "jdtls")
 if not status then

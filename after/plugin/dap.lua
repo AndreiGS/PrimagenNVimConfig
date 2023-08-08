@@ -1,4 +1,4 @@
-dap = require'dap'
+local dap = require'dap'
 
 vim.keymap.set("n", "<F5>", function() dap.toggle_breakpoint() end)
 vim.keymap.set("n", "<F9>", function() dap.continue() end)

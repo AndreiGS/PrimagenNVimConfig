@@ -12,23 +12,31 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 local plugins = {
+  {
+    'nvim-lualine/lualine.nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons' }
+  },
   'lervag/vimtex',
-
+  { "folke/neodev.nvim", opts = {} },
+  {'junegunn/fzf', build = function()
+      vim.fn['fzf#install']()
+    end
+  },
   {
     "nvim-telescope/telescope.nvim",
     version = "0.1.0",
     dependencies = { "nvim-lua/plenary.nvim", "IllustratedMan-code/telescope-conda.nvim" }
   },
-  {
-    "rose-pine/neovim",
-    lazy = false,
-    priority = 1000,
-    name = "rose-pine",
-    config = function()
-      vim.cmd("colorscheme rose-pine")
-    end
-  },
-  -- { "catppuccin/vim", as = "catppuccin" },
+  { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
+  -- {
+  --   "rose-pine/neovim",
+  --   lazy = false,
+  --   priority = 1000,
+  --   name = "rose-pine",
+  --   config = function()
+  --     vim.cmd("colorscheme rose-pine")
+  --   end
+  -- },
   {
     "folke/trouble.nvim",
     config = function()
@@ -70,16 +78,24 @@ local plugins = {
   "folke/zen-mode.nvim",
   "github/copilot.vim",
   "eandrju/cellular-automaton.nvim",
-  "laytan/cloak.nvim",
+  -- "laytan/cloak.nvim",
   {
     "rcarriga/nvim-dap-ui",
     dependencies = { "mfussenegger/nvim-dap" }
   },
-  "folke/neodev.nvim",
   "mfussenegger/nvim-jdtls",
   "terrortylor/nvim-comment",
   -- "luk400/vim-jukit",
   "christoomey/vim-tmux-navigator",
+  {
+    'akinsho/flutter-tools.nvim',
+    lazy = false,
+    dependencies = {
+        'nvim-lua/plenary.nvim',
+        'stevearc/dressing.nvim', -- optional for vim.ui.select
+    },
+    config = true,
+  },
 }
 
 require("lazy").setup(plugins, {})
